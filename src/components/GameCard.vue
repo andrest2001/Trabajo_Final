@@ -8,7 +8,7 @@
         
         <h1>{{result.name}}</h1>
         <div id="metacritic">
-          <h4 v-if='genre === true'>Rating: {{result.rating}}</h4>
+          <h4 v-if='genre === true'>Rating: {{result.metacritic}}</h4>
           <img src="../assets/Metacritic.svg.png" alt="">
         </div>
         
