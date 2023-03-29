@@ -6,6 +6,7 @@
   
       <div>
         <h1>{{ genre.name }}</h1>
+        
       </div>
     </div>
   </template>

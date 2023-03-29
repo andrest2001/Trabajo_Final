@@ -6,6 +6,7 @@ import VistaContacto from '../views/VistaContacto.vue'
 import VistaRestablecer from '../views/VistaRestablecer.vue'
 import VistaJuegos from '../views/VistaJuegos.vue'
 import VistaJuegoscompleta from '../views/VistaJuegoscompleta.vue'
+import VistaDetalles from '../views/VistaDetalles.vue'
 const routes = [
   {
     path: '/',
@@ -44,6 +45,11 @@ const routes = [
     path: '/juegos',
     name: 'VistaJuegos',
     component: VistaJuegos
+  },
+  {
+    path: '/details/:game_id',
+    name: 'VistaDetalles',
+    component: VistaDetalles
   },
 
 ]

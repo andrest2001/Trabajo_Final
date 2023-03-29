@@ -52,7 +52,7 @@ import GenreCard from '../components/GenreCard.vue'
       pageNumber: '',
       currentPage: 1,
       lastDisplay: 0,
-      currentDisplay: 8,//6, //use css grid or get window width to determine display size.
+      currentDisplay: 8,
       numberOfDisplay: 8,
       pageArray: []
     }),

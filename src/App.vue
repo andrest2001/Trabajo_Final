@@ -9,6 +9,8 @@
       <router-link to="/login">Login</router-link>
       <router-link to="/registro">Registro</router-link>
       <router-link to="/contacto">Contacto</router-link>
+      
+
     </div>
   </nav>
 
@@ -36,7 +38,12 @@ nav
   justify-content: center
   align-items: center
   justify-content: space-around
-  
+  select
+    background: none
+    border: none
+    color: white
+    option
+      color: black
   div
     display: flex
     i
@@ -50,7 +57,7 @@ nav
     text-decoration: none
     &.router-link-exact-active 
       font-weight: bold
-    
   
+
 
 </style>
