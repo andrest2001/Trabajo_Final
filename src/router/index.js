@@ -7,6 +7,7 @@ import VistaRestablecer from '../views/VistaRestablecer.vue'
 import VistaJuegos from '../views/VistaJuegos.vue'
 import VistaJuegoscompleta from '../views/VistaJuegoscompleta.vue'
 import VistaDetalles from '../views/VistaDetalles.vue'
+import VistaWikis from '../views/VistaWikis.vue'
 const routes = [
   {
     path: '/',
@@ -51,6 +52,11 @@ const routes = [
     name: 'VistaDetalles',
     component: VistaDetalles
   },
+  {
+    path:'/wikis/:game_id',
+    name:'VistaWikis',
+    component: VistaWikis
+  }
 
 ]
 
