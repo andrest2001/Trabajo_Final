@@ -11,7 +11,12 @@
                 <div id="texto">
                     <h3>{{gameDetails.name}}</h3>
                     <p>{{gameDetails.description_raw}}</p>
+                    
                 </div>
+                <div id="wikis">
+                    <router-link to="/wikis/:genre_id">Wikis</router-link>
+                </div>
+                
             </section>
         </div>
         
@@ -74,5 +79,21 @@
 
     #texto
         padding: 1rem
+    #wikis
+        width: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+        a
+            color: white
+            width: 20%
+            text-decoration: none
+            display: flex
+            justify-content: center
+            align-items: center
+            background-color: orange
+            padding: 1rem
+            border-radius: 15px
+            border: none
         
 </style>

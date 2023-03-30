@@ -33,6 +33,7 @@
 
 <script>
 import GameCard from '@/components/GameCard.vue'
+
 import axios from 'axios'
 import GenreCard from '../components/GenreCard.vue'
 
@@ -40,7 +41,8 @@ import GenreCard from '../components/GenreCard.vue'
     name: 'HomePage',
     components:{
     GenreCard,
-    GameCard
+    GameCard,
+    
 },
     data: () => ({
       API_KEY: '5496e25bcb454313b1ac09968d76dca4',

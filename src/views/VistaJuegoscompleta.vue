@@ -15,7 +15,7 @@
             @click="selectGame(game.id)"/>
         </div>
         
-  
+
       </div>
       
   
@@ -129,4 +129,6 @@
       p
         padding-right: 40px
         font-size: 20px
+
+
 </style>

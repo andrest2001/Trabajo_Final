@@ -14,7 +14,7 @@
         </router-link>
       </div>
       <div id="wikis">
-        <router-link to="./VistaLogin.vue">
+        <router-link to="/login">
           <h1>Wikis</h1>
           <img src="../assets/Vector.png" alt="">
         </router-link>
