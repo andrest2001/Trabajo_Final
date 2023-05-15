@@ -26,8 +26,7 @@
       <input type="text" placeholder="Vuelva a escribir su contraseña">
       <div id="izquierda">
         <button>Entrar</button>
-      </div>
-      
+      </div>    
     
     </div>
   </section>
@@ -52,6 +51,7 @@
         font-family: 'Roboto', sans-serif
         color: white
         padding-bottom: 126px
+
         #formulario
             width: 70%
             height: 80vh
@@ -89,4 +89,6 @@
             padding: 1rem
             width: 20%
             color: white
+
+      
 </style>

@@ -66,8 +66,8 @@ import GenreCard from '../components/GenreCard.vue'
         const res = await axios.get(`https://api.rawg.io/api/genres?key=${this.API_KEY}`)
         this.genres = res.data.results
         this.pageNumber = Math.ceil(this.genres.length / this.numberOfDisplay)
-
       },
+      
       async getSearchResults(e) {
         e.preventDefault()
         const res = await axios.get(`https://api.rawg.io/api/games?key=${this.API_KEY}&search=${this.searchQuery}`)

@@ -14,7 +14,7 @@
                     
                 </div>
                 <div id="wikis">
-                    <router-link to="/wikis/:genre_id">Wikis</router-link>
+                    
                 </div>
                 
             </section>
@@ -24,28 +24,33 @@
   </template>
   
 <script>
-  import axios from 'axios'
-    export default {
-      name: 'VistaDetalles',
-      data: () => ({
-        API_KEY: '5496e25bcb454313b1ac09968d76dca4',
-        gameDetails: null,
 
-      }),
-      mounted() {this.getVistaDetalles(), this.getSubreddit()},
-      methods: {
+
+import axios from 'axios'
+    export default {
+    name: "VistaDetalles",
+    data: () => ({
+        API_KEY: "5496e25bcb454313b1ac09968d76dca4",
+        gameDetails: null,
+    }),
+    mounted() { this.getVistaDetalles(), this.getSubreddit(); },
+    methods: {
         async getVistaDetalles() {
-          // Get game id from router here
-          const res = await axios.get(`https://api.rawg.io/api/games/${this.$route.params.game_id}?key=${this.API_KEY}`)
-          this.gameDetails = res.data
-   
+            // Get game id from router here
+            const res = await axios.get(`https://api.rawg.io/api/games/${this.$route.params.game_id}?key=${this.API_KEY}`);
+            this.gameDetails = res.data;
         },
         async getSubreddit() {
-          const res = await axios.get(`https://api.rawg.io/api/games/${this.$route.params.game_id}/reddit?key=${this.API_KEY}`) 
-          this.reddit = res.data.results
+            const res = await axios.get(`https://api.rawg.io/api/games/${this.$route.params.game_id}/reddit?key=${this.API_KEY}`);
+            this.reddit = res.data.results;
+        },
+        selectWiki(gameId) {
+            this.$router.push(`/wikis/${gameId}`);
         }
-      }
-    }
+    },
+
+}
+
   </script>
 
 <style lang="sass" scoped>
