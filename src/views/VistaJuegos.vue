@@ -9,13 +9,16 @@
 
       <section class="search-results container-grid" id="busqueda">
         <div v-for="(result, index) in searchResults" :key="result.id" id="busqueda_juegos">
-          <GameCard v-if="index >= lastDisplay && index < currentDisplay" :result="result" @click="selectGame(result.id)" :genre="false"/>
+          <div id="cartita">
+            <GameCard v-if="index >= lastDisplay && index < currentDisplay" :result="result" @click="selectGame(result.id)" :genre="false"/>
+          </div>
+          
         </div>
       </section>
     </div>
 
     <div v-if="searched === false" class="genres" id="generos">
-      <h2>Genres</h2>
+      <h2>Géneros</h2>
       <section  id="juegos">
         <div v-for="(genre, index) in genres" :key="genre.id" id="div_carta">
           <GenreCard v-if="index >= lastDisplay && index < currentDisplay" v-bind:genre="genre" @click="selectGenre(genre.id)" />
@@ -54,8 +57,8 @@ import GenreCard from '../components/GenreCard.vue'
       pageNumber: '',
       currentPage: 1,
       lastDisplay: 0,
-      currentDisplay: 8,
-      numberOfDisplay: 8,
+      currentDisplay: 3,
+      numberOfDisplay: 3,
       pageArray: []
     }),
     mounted() {
@@ -104,6 +107,7 @@ import GenreCard from '../components/GenreCard.vue'
         color: white
         display: flex
         flex-direction: column
+        height: 100vh
 
     .pagination
       display: flex
@@ -152,11 +156,14 @@ import GenreCard from '../components/GenreCard.vue'
         font-style: italic
     #div_carta
       width: 30%
+      margin-top: 30px
       padding-right: 40px
       padding-bottom: 40px
 
+
     #generos
       width: 100%
+      margin-top: 20px
       h2
         padding-left: 95px
         padding-bottom: 20px

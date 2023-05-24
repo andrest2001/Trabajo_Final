@@ -15,6 +15,7 @@
       export default {
         name: 'GenreCard',
         props: {
+          result: Object,
           genre: Object,
         }
       }

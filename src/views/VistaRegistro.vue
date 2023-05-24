@@ -1,45 +1,55 @@
 <template>
   <section>
     <div id="formulario">
-      
-      <h1>REGISTRO</h1>
-      <div id="izquierda">
-        <p>Nombre de usuario</p>
-      </div>
-      
-      <input type="text" placeholder="Escriba aquí su nombre">
-      <div id="izquierda">
-        <p>Correo electrónico</p>
-      </div>
-      <input type="text" placeholder="Escriba aquí su correo">
-      <div id="izquierda">
-        <p>Confirme su correo electrónico</p>
-      </div>
-      <input type="text" placeholder="Vuelva a escribir su correo">
-      <div id="izquierda">
-        <p>Contraseña</p>
-      </div>
-      <input type="text" placeholder="Escriba su contraseña">
-      <div id="izquierda">
-        <p>Confirme su contraseña</p>
-      </div>
-      <input type="text" placeholder="Vuelva a escribir su contraseña">
-      <div id="izquierda">
-        <button>Entrar</button>
-      </div>    
-    
+      <h2>Agregar Usuario</h2>
+      <form @submit.prevent="agregarUsuario">
+        <label>Nombre:</label>
+        <input type="text" v-model="nombre" required>
+        <label>Correo electrónico:</label>
+        <input type="email" v-model="email" required>
+
+        <label>Contraseña: </label>
+        <input type="password" v-model="password" required>
+        <button type="submit">Agregar Usuario</button>
+      </form>
     </div>
   </section>
-  <router-view></router-view>
 </template>
 
 <script>
+import axios from 'axios';
 
-    export default {
-    name: 'VistaRegistro',
+export default {
+  name:"VistaRegistro",
+  data() {
+    return {
+      nombre: '',
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    agregarUsuario() {
+      const nuevoUsuario = {
+        nombre: this.nombre,
+        correo: this.correo,
+        password: this.password
+      };
 
+      axios.post('http://localhost:8080/#/registro', nuevoUsuario)
+        .then(response => {
+          console.log(response.data.message);
+          // Realizar acciones adicionales después de agregar el usuario
+        })
+        .catch(error => {
+          console.error('Error al agregar el usuario:', error);
+          // Mostrar un mensaje de error o realizar acciones adicionales
+        });
     }
+  }
+};
 </script>
+
 
 <style lang="sass" scoped>
     section

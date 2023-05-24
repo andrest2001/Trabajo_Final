@@ -1,9 +1,9 @@
 const express = require('express');
 const mysql = require('mysql');
-const nodemailer = require('nodemailer')
+
 
 const app = express()
-app.use(express.json())
+
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -22,20 +22,22 @@ connection.connect((error) => {
 });
 
 
-app.get('/usuarios', (req, res) => {
-    connection.query('SELECT * FROM usuarios', (err, results) => {
-      if (err) {
-        console.error('Error al obtener usuarios:', err);
-        res.status(500).send('Error al obtener usuarios');
+
+
+  app.use(express.json());
+
+  app.post('/registro', (req, res) => {
+    const { nombre, email, password } = req.body;
+  
+    const sql = 'INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)';
+    connection.query(sql, [nombre, email, password], (error, result) => {
+      if (error) {
+        console.error('Error al crear un usuario:', error);
+        res.status(500).json({ error: 'Error al crear un usuario.' });
       } else {
-        res.json(results);
+        res.json({ message: 'Usuario creado correctamente.' });
       }
     });
   });
-
-
-app.listen(3000, () => {
-    console.log('Servidor backend iniciado en el puerto 3000');
-});
-
+  
 
