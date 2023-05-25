@@ -19,7 +19,7 @@
 
     <div v-if="searched === false" class="genres" id="generos">
       <h2>Géneros</h2>
-      <section  id="juegos">
+      <section id="juegos">
         <div v-for="(genre, index) in genres" :key="genre.id" id="div_carta">
           <GenreCard v-if="index >= lastDisplay && index < currentDisplay" v-bind:genre="genre" @click="selectGenre(genre.id)" />
         </div>
@@ -113,7 +113,7 @@ import GenreCard from '../components/GenreCard.vue'
       display: flex
       justify-content: center
       align-items: center
-      padding-bottom: 75px
+      margin-bottom: 500px
       p
         padding-right: 40px
         font-size: 20px
@@ -174,6 +174,11 @@ import GenreCard from '../components/GenreCard.vue'
       justify-content: center
       align-items: center
       flex-wrap: wrap
+
+    form
+      display: flex
+      input
+        margin-right: 15px
 
     
       

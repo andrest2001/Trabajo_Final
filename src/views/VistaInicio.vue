@@ -9,7 +9,7 @@
     <div id="cubos">
       <div id="juegos">
         <router-link to="./juegos">
-          <h1>All Games</h1>
+          <h1>Juegos</h1>
           <img src="../assets/mdi_controller.png" alt="">
         </router-link>
       </div>
@@ -24,10 +24,7 @@
         <h1>Foros</h1>
         <img src="../assets/maki_art-gallery.png" alt="">
       </div>
-      <div id="tendencias">
-        <h1>Tendencias</h1>
-        <img src="../assets/mdi_fire.png" alt="">
-      </div>
+
       
     </div>
     
@@ -121,6 +118,7 @@ export default {
       align-items: center
       margin-top: 20px
       text-align: center
+      
       #wikis, #foros, #tendencias, #juegos
         border: 1px solid white
         padding: 3rem
@@ -133,6 +131,7 @@ export default {
         width: 220px
         height: 210px
         text-decoration: none
+        margin-right: 50px
         a
           text-decoration: none
         h1

@@ -1,14 +1,7 @@
 <template>
   <div id="principal">
     <div v-if="games">
-      <form>
-        <label for="rating">Sort by rating:</label>
-        <select name="rating" id="rating" @input="handleSelect">
-          <option value="non" selected disabled>Select an Option</option>
-          <option value="ascending" >ascending order</option>
-          <option value="descending" >descending order</option>
-        </select>
-      </form>
+
       <div id="juegos">
         <div v-for="game in pageArray" :key="game.id" id="contenedor">
           <GameCard  :result="game" :genre='true'
