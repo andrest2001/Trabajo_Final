@@ -72,7 +72,7 @@
         </div>
       </div>
       <div id="derecha_f">
-          <p>© 2011-2022 Andrés Toledano. All Rights Reserved.</p>
+          <p>© 2022-2023 Andrés Toledano. All Rights Reserved.</p>
       </div>
     </footer>
   </section>
@@ -154,8 +154,6 @@ export default {
       border: 1px solid white
       padding: .5rem
       display: flex
-      
-      
       border-radius: 15px
       margin-bottom: 30px
       margin-top: 10px

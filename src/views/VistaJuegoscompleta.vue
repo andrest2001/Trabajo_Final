@@ -14,7 +14,7 @@
   
         
       </div>
-        <div  class='page'>
+        <div class='page'>
           <p v-for="page in pageNumber" :key="page" @click="handlePage(page)" class='page-numbers'>{{page}}</p>
         </div>
       <div class="paginate">
@@ -45,7 +45,7 @@
       },
       methods: {
         async getGamesByGenre() {
-          // Get Genre Id here
+          
           const res = await axios.get(`https://api.rawg.io/api/games?genres=${this.$route.params.genre_id}&key=${this.API_KEY}`)
   
           this.games = res.data.results
@@ -119,6 +119,7 @@
       align-items: center
       padding-bottom: 75px
       padding-top: 75px
+      cursor: pointer
       p
         padding-right: 40px
         font-size: 20px

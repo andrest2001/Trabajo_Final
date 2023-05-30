@@ -114,6 +114,7 @@ import GenreCard from '../components/GenreCard.vue'
       justify-content: center
       align-items: center
       margin-bottom: 500px
+      cursor: pointer
       p
         padding-right: 40px
         font-size: 20px

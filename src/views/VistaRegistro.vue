@@ -36,7 +36,7 @@ export default {
         password: this.password
       };
 
-      axios.post('http://localhost:8080/#/registro', nuevoUsuario)
+      axios.post('/registro', nuevoUsuario)
         .then(response => {
           console.log(response.data.message);
           // Realizar acciones adicionales después de agregar el usuario
