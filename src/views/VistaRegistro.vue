@@ -3,14 +3,17 @@
     <div id="formulario">
       <h2>Agregar Usuario</h2>
       <form @submit.prevent="agregarUsuario">
-        <label>Nombre:</label>
+        <div id="izquierda"><label>Nombre:</label></div>
+        
         <input type="text" v-model="nombre" required>
-        <label>Correo electrónico:</label>
+        <div id="izquierda"><label>Correo electrónico:</label></div>
         <input type="email" v-model="email" required>
 
-        <label>Contraseña: </label>
+        <div id="izquierda"><label>Contraseña:</label></div>
         <input type="password" v-model="password" required>
         <button type="submit">Agregar Usuario</button>
+
+        <p v-if="mensajeError" class="error">{{ mensajeError }}</p>
       </form>
     </div>
   </section>
@@ -25,7 +28,8 @@ export default {
     return {
       nombre: '',
       email: '',
-      password: ''
+      password: '',
+      mensajeError: ''
     };
   },
   methods: {
@@ -33,7 +37,8 @@ export default {
       const nuevoUsuario = {
         nombre: this.nombre,
         email: this.email,
-        password: this.password
+        password: this.password,
+        
       };
 
       axios.post('http://localhost:3001/registro', nuevoUsuario)
@@ -42,8 +47,8 @@ export default {
           // Realizar acciones adicionales después de agregar el usuario
         })
         .catch(error => {
-          console.error('Error al agregar el usuario:', error);
-          // Mostrar un mensaje de error o realizar acciones adicionales
+          console.error('Error al agregar el usuario:', error.response.data.error);
+          this.mensajeError = error.response.data.error;
         });
     }
   }
@@ -63,17 +68,22 @@ export default {
         padding-bottom: 126px
 
         #formulario
-            width: 70%
-            height: 80vh
-            display: flex
-            justify-content: center
-            align-items: center
-            flex-direction: column
-            padding: 2rem
-            border: 2px solid white
-            border-radius: 15px
+          width: 70%
+          height: 80vh
+          display: flex
+          justify-content: center
+          align-items: center
+          flex-direction: column
+          padding: 2rem
+          border: 2px solid white
+          border-radius: 15px
+          h2
+            margin-bottom: 50px
+            font-size: 25px
         #izquierda
             width: 60%
+            label
+              font-family: 'Roboto', sans-serif
             a
                 list-style: none
                 color: white
@@ -90,7 +100,7 @@ export default {
             background: white
             border-radius: 15px
             padding: 1rem
-            width: 60%
+            width: 100%
             font-style: italic
         button
             border: none
@@ -99,6 +109,19 @@ export default {
             padding: 1rem
             width: 20%
             color: white
-
+  form
+    width: 70%
+    #izquierda
+      font-size: 20px
+      margin-bottom: 15px
+      
+    input
+      margin-bottom: 15px
+    button
+      cursor: pointer
+  .error
+    margin-top: 10px
+    font-size: 25px
+    color: red
       
 </style>
