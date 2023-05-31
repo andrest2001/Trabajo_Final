@@ -6,6 +6,13 @@ const bodyParser = require('body-parser');
 
 const app = express()
 
+// CREATE TABLE comentarios (
+//   id INT PRIMARY KEY AUTO_INCREMENT,
+//   autor VARCHAR(255) NOT NULL,
+//   contenido TEXT NOT NULL,
+//   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+// );
+
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -39,19 +46,6 @@ connection.connect((error) => {
   app.use(express.json());
   app.use(cors())
 
-  // app.post('/registro', (req, res) => {
-  //   const { nombre, email, password } = req.body;
-  
-  //   const sql = 'INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)';
-  //   connection.query(sql, [nombre, email, password], (error, result) => {
-  //     if (error) {
-  //       console.error('Error al crear un usuario:', error);
-  //       res.status(500).json({ error: 'Error al crear un usuario.' });
-  //     } else {
-  //       res.json({ message: 'Usuario creado correctamente.' });
-  //     }
-  //   });
-  // });
 
 
   app.post('/registro', (req, res) => {
@@ -84,23 +78,57 @@ connection.connect((error) => {
   });
 
 
-  app.post('/login', (req, res) => {
-    const { nombre, password } = req.body;
-  
-    const query = `SELECT * FROM usuarios WHERE nombre = '${nombre}' AND password = '${password}'`;
-  
-    connection.query(query, (err, results) => {
-      if (err) throw err;
-  
-      if (results.length > 0) {
-        const user = results[0];
-        req.session.user = user; // Establecer la sesión
-        res.status(200).json({ message: 'Inicio de sesión exitoso', user });
+  app.post('/details/:game_id', (req, res) => {
+    const { contenido } = req.body;
+    const autor = req.session.user.nombre; // Obtener el nombre del usuario logeado
+    
+    if (!autor) {
+      // Si no hay un usuario logeado, devolver un error o un mensaje de no autorizado
+      res.status(401).json({ error: 'Debe iniciar sesión para enviar comentarios.' });
+      return;
+    }
+    
+    const sql = 'INSERT INTO comentarios (autor, contenido) VALUES (?, ?)';
+    connection.query(sql, [autor, contenido], (error, result) => {
+      if (error) {
+        console.error('Error al agregar el comentario:', error);
+        res.status(500).json({ error: 'Error al agregar el comentario.' });
       } else {
-        res.status(401).json({ message: 'Credenciales incorrectas' });
+        res.json({ message: 'Comentario agregado correctamente.' });
       }
     });
   });
+
+
+
+  app.post('/comentarios', (req, res) => {
+    const { autor, contenido } = req.body;
+  
+    const sql = 'INSERT INTO comentarios (autor, contenido) VALUES (?, ?)';
+    connection.query(sql, [autor, contenido], (error, result) => {
+      if (error) {
+        console.error('Error al agregar el comentario:', error);
+        res.status(500).json({ error: 'Error al agregar el comentario.' });
+      } else {
+        res.json({ message: 'Comentario agregado correctamente.' });
+      }
+    });
+  });
+  
+  app.get('/comentarios', (req, res) => {
+    const sql = 'SELECT * FROM comentarios';
+    connection.query(sql, (error, results) => {
+      if (error) {
+        console.error('Error al obtener los comentarios:', error);
+        res.status(500).json({ error: 'Error al obtener los comentarios.' });
+      } else {
+        res.json(results);
+      }
+    });
+  });
+
+
+
 
 
 const port = 3001;
