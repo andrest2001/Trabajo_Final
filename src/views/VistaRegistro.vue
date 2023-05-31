@@ -32,11 +32,11 @@ export default {
     agregarUsuario() {
       const nuevoUsuario = {
         nombre: this.nombre,
-        correo: this.correo,
+        email: this.email,
         password: this.password
       };
 
-      axios.post('/registro', nuevoUsuario)
+      axios.post('http://localhost:3001/registro', nuevoUsuario)
         .then(response => {
           console.log(response.data.message);
           // Realizar acciones adicionales después de agregar el usuario

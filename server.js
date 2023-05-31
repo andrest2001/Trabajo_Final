@@ -1,6 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
-
+const cors = require('cors');
 
 const app = express()
 
@@ -25,6 +25,7 @@ connection.connect((error) => {
 
 
   app.use(express.json());
+  app.use(cors())
 
   app.post('/registro', (req, res) => {
     const { nombre, email, password } = req.body;
@@ -39,5 +40,12 @@ connection.connect((error) => {
       }
     });
   });
-  
 
+
+const port = 3001;
+
+
+
+app.listen(port, () => {
+  console.log(`Servidor iniciado en el puerto ${port}`);
+});
