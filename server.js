@@ -78,7 +78,27 @@ connection.connect((error) => {
   });
 
 
-  app.post('/details/:game_id', (req, res) => {
+  app.post('/login', (req, res) => {
+    const { nombre, password } = req.body;
+  
+    const query = `SELECT * FROM usuarios WHERE nombre = '${nombre}' AND password = '${password}'`;
+  
+    connection.query(query, (err, results) => {
+      if (err) throw err;
+  
+      if (results.length > 0) {
+        const user = results[0];
+        req.session.user = user; // Establecer la sesión
+        res.status(200).json({ message: 'Inicio de sesión exitoso', user });
+      } else {
+        res.status(401).json({ message: 'Credenciales incorrectas' });
+      }
+    });
+  });
+
+
+
+  app.post('/details:id', (req, res) => {
     const { contenido } = req.body;
     const autor = req.session.user.nombre; // Obtener el nombre del usuario logeado
     
@@ -95,34 +115,6 @@ connection.connect((error) => {
         res.status(500).json({ error: 'Error al agregar el comentario.' });
       } else {
         res.json({ message: 'Comentario agregado correctamente.' });
-      }
-    });
-  });
-
-
-
-  app.post('/comentarios', (req, res) => {
-    const { autor, contenido } = req.body;
-  
-    const sql = 'INSERT INTO comentarios (autor, contenido) VALUES (?, ?)';
-    connection.query(sql, [autor, contenido], (error, result) => {
-      if (error) {
-        console.error('Error al agregar el comentario:', error);
-        res.status(500).json({ error: 'Error al agregar el comentario.' });
-      } else {
-        res.json({ message: 'Comentario agregado correctamente.' });
-      }
-    });
-  });
-  
-  app.get('/comentarios', (req, res) => {
-    const sql = 'SELECT * FROM comentarios';
-    connection.query(sql, (error, results) => {
-      if (error) {
-        console.error('Error al obtener los comentarios:', error);
-        res.status(500).json({ error: 'Error al obtener los comentarios.' });
-      } else {
-        res.json(results);
       }
     });
   });

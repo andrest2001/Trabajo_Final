@@ -21,10 +21,7 @@
                         <p>{{ comentario.fecha }}</p>
                     </div>
                     <form @submit.prevent="agregarComentario">
-                        <div>
-                            <label>Autor:</label>
-                            <input type="text" v-model="nuevoComentario.autor" required>
-                        </div>
+
                         <div>
                             <label>Contenido:</label>
                             <textarea v-model="nuevoComentario.contenido" required></textarea>
@@ -50,11 +47,13 @@ import axios from 'axios'
         gameDetails: null,
         comentarios: [],
         nuevoComentario: {
-            autor: '',
+            
             contenido: ''
-      }
+      },
+      loggedIn: false,
+      usuario: null
     }),
-    mounted() { this.getVistaDetalles(), this.getSubreddit(); this.obtenerComentarios();},
+    mounted() { this.getVistaDetalles(), this.getSubreddit(); this.obtenerComentarios(); this.verificarSesion},
     methods: {
         async getVistaDetalles() {
             // Get game id from router here
@@ -69,38 +68,32 @@ import axios from 'axios'
             this.$router.push(`/wikis/${gameId}`);
         },
         async obtenerComentarios() {
-            const user = localStorage.getItem('user');
-  
-            if (user) {
-                const res = await axios.get('http://localhost:3001/comentarios');
-                this.comentarios = res.data;
-            }
+            const res = await axios.get('http://localhost:3001/comentarios');
+            this.comentarios = res.data;
         },
         async agregarComentario() {
-            // Obtener el nombre de usuario almacenado en el localStorage
-            const user = localStorage.getItem('user');
-            
-            if (!user) {
-                // Si no hay un usuario logeado, mostrar un mensaje o redirigir a la página de inicio de sesión
-                console.log('Debe iniciar sesión para enviar comentarios');
-                return;
-            }
-            
-            // Enviar nuevo comentario al servidor
-            try{
-            this.nuevoComentario.autor = JSON.parse(user).nombre;
-            const res = await axios.post('http://localhost:3001/comentarios', this.nuevoComentario);
-            console.log(res.data.message);
-            this.obtenerComentarios();
-            this.nuevoComentario.autor = '';
-            this.nuevoComentario.contenido = '';
-            }catch (error) {
-                
+      // Enviar nuevo comentario al servidor
+            const comentario = {
+                contenido: this.nuevoComentario.contenido
+            };
+
+            try {
+                const res = await axios.post('http://localhost:3001/comentarios', comentario);
+                console.log(res.data.message);
+                this.obtenerComentarios();
+                this.nuevoComentario.contenido = '';
+            } catch (error) {
                 console.error('Error al enviar el comentario:', error);
-            }
-            
-            
-        },} }
+            },
+            verificarSesion() {
+      // Verificar si el usuario está logeado
+      const user = localStorage.getItem('user');
+
+      if (user) {
+        this.loggedIn = true;
+        this.usuario = JSON.parse(user);
+      }
+    }} }
 
 
 </script>
