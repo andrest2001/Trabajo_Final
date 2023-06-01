@@ -3,7 +3,7 @@ import VistaInicio from '../views/VistaInicio.vue'
 import VistaLogin from '../views/VistaLogin.vue'
 import VistaRegistro from '../views/VistaRegistro.vue'
 import VistaContacto from '../views/VistaContacto.vue'
-import VistaRestablecer from '../views/VistaRestablecer.vue'
+import VistaTendencias from '../views/VistaTendencias.vue'
 import VistaJuegos from '../views/VistaJuegos.vue'
 import VistaJuegoscompleta from '../views/VistaJuegoscompleta.vue'
 import VistaDetalles from '../views/VistaDetalles.vue'
@@ -34,11 +34,7 @@ const routes = [
     name: 'VistaContacto',
     component: VistaContacto
   },
-  {
-    path: '/restablecer',
-    name: 'VistaRestablecer',
-    component: VistaRestablecer
-  },
+
   {
     path: '/juegos',
     name: 'VistaJuegos',
@@ -53,6 +49,11 @@ const routes = [
     path:'/wikis/:game_id',
     name:'VistaWikis',
     component: VistaWikis
+  },
+  {
+    path: '/tendencias',
+    name: 'VistaTendencias',
+    component: VistaTendencias
   }
 
 ]
