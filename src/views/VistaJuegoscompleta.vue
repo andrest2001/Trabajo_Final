@@ -135,8 +135,9 @@
         #contenedor
           width: 80%
           padding: 10px
+          
           #carta
-            height: 50vh
+            height: 60vh
         
     form
       label

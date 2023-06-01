@@ -3,7 +3,7 @@
         <div class="game-content">
             <section v-if='gameDetails' class="image-container">
                 <div id="imagen">
-                <img :src="gameDetails.background_image" alt="img">
+                    <img :src="gameDetails.background_image" alt="img">
                 </div>
             </section>
             <section v-if="gameDetails" class="details">
@@ -11,6 +11,7 @@
                 <div id="texto">
                     <h3>{{gameDetails.name}}</h3>
                     <p>{{gameDetails.description_raw}}</p>
+                    <h1>{{ gameDetails.ordering_released }}</h1>
                     
                 </div>
                 <div id="wikis">
@@ -108,5 +109,21 @@ import axios from 'axios'
             padding: 1rem
             border-radius: 15px
             border: none
+
+    @media(max-width: 768px)
+        #principal
+            height: 130vh
+            .game-content
+                height: 120vh
+                .image-container
+                    #imagen
+                        img
+                            width:70%
+                            margin-top: 68px
+                .details
+                    #texto
+                        height: 100vh
+                        p
+                            font-size: 10px
         
 </style>

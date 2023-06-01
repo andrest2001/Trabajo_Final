@@ -14,8 +14,8 @@
         </router-link>
       </div>
       <div id="wikis">
-        <router-link to="/login">
-          <h1>Wikis</h1>
+        <router-link to="/tendencias">
+          <h1>Tendencias</h1>
           <img src="../assets/Vector.png" alt="">
         </router-link>
         
@@ -31,30 +31,18 @@
     <div id="titulo_bloques">
         <h1>LAST UPLOADS</h1>
     </div>
-    <div id="bloque2">
-      
-      
-      <div id="bloques">
-        <img src="../assets/atomic_heart.jpg" alt="">
-        <div id="descripcion_bloque">
-          <h1>GUÍA BÁSICA DE ATOMIC HEART</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, provident repellat saepe at iste animi esse sint quo, velit consequuntur, assumenda earum ullam error voluptas delectus nam dolorum illum ex.</p>
-        </div>
-      </div>
-    </div>
 
-    <div id="bloque2">
-      
-      
+
+
+    <div v-for="(game) in latestGames" :key="game.id" id="bloque2">
       <div id="bloques">
-        <img src="../assets/the-last-of-us.jpg" alt="">
+        <img :src="game.background_image" alt="">
         <div id="descripcion_bloque">
-          <h1>GUÍA BÁSICA THE LAST OF US</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, provident repellat saepe at iste animi esse sint quo, velit consequuntur, assumenda earum ullam error voluptas delectus nam dolorum illum ex.</p>
+          <h1>{{ game.name }}</h1>
+          <p>{{ game.description }}</p>
         </div>
       </div>
     </div>
-    
 
     <footer>
       <div id="izquierda_f">
@@ -81,11 +69,23 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   
   name: 'VistaInicio',
-
+  data: () => ({
+    latestGames: [],
+    API_KEY: "5496e25bcb454313b1ac09968d76dca4",
+  }),
+  mounted() {
+    this.getLatestGames()
+  },
+  methods: {
+    async getLatestGames() {
+      const response = await axios.get(`https://api.rawg.io/api/games?key=5496e25bcb454313b1ac09968d76dca4&ordering=-released&page_size=3`)
+      this.latestGames = response.data.results
+    }
+  }
 
 }
 </script>

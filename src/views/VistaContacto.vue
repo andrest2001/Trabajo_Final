@@ -98,6 +98,30 @@ export default{
         padding: 1rem
         width: 20%
         color: white
-    
+  
+  @media (max-width: 768px) 
+    section
+      height:100vh
+      margin-top: 80px
+      width: 100%
+      
+      #formulario
+        height:100vh
+        width: 80%
+        
+        h1
+          margin-top: 0px
+
+        #izquierda
+          width:100%
+        input
+          width: 100%
+        textarea
+          width:100%
+
+        button
+          width: 50%
+      
+  
 
 </style>
