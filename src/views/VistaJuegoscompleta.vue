@@ -124,5 +124,31 @@
         padding-right: 40px
         font-size: 20px
 
+  @media (max-width: 768px) 
+    #principal
+      margin-top: 30px
+      #juegos
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        #contenedor
+          width: 80%
+          padding: 10px
+          #carta
+            height: 50vh
+        
+    form
+      label
+        font-size: 14px
+        padding-right: 5px
+      select
+        padding: 0.3rem
+        font-size: 12px
+    .page
+      p
+        padding-right: 15px
+        font-size: 14px
+  
 
 </style>

@@ -165,6 +165,7 @@ import GenreCard from '../components/GenreCard.vue'
     #generos
       width: 100%
       margin-top: 20px
+      
       h2
         padding-left: 95px
         padding-bottom: 20px
@@ -181,6 +182,63 @@ import GenreCard from '../components/GenreCard.vue'
       input
         margin-right: 15px
 
+  @media (max-width: 768px)
+    #principal
+        height: 100vh
+        padding-bottom: 20px
+        width: 100%
+        #generos
+          h2
+            padding-left: 20px
+            padding-bottom: 10px
+          #juegos
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+            flex-direction: column
+            #div_carta
+              width: 65%
+        .pagination
+          margin-bottom: 200px
+          p
+            font-size: 16px
+
+
     
+
+    .search
+      margin-right: 0
+      margin-top: 15px
+      form
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: row
+        width: 100%
+        
+        input
+          margin-right: 20px
+          margin-bottom: 15px
+          margin-left: 15px
+          width: 80%
+          margin-top: 15px
+
+        button
+          width: 30%
+          margin-right: 20px
+          
+        
+
+        
+
+        #busqueda
+          #busqueda_juegos
+            width: 100%
+            padding-right: 0
+
+        
+
+       
       
 </style>

@@ -131,7 +131,7 @@ export default {
         width: 220px
         height: 210px
         text-decoration: none
-        margin-right: 50px
+        
         a
           text-decoration: none
         h1
@@ -190,5 +190,106 @@ export default {
       justify-content: center
       align-items: center
       
-    
+  @media (max-width: 768px)  
+    #principal
+      font-family: 'Roboto', sans-serif
+      color: white
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 100%
+      display: flex
+      flex-direction: column
+      #cubos
+        width: 100%
+
+
+    p
+      font-size: 16px
+
+    #descripcion
+      padding-top: 2rem
+      width: 90%
+      p
+        font-size: 20px
+
+    #cubos
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      align-items: center
+      margin-top: 20px
+      width: 100%
+      text-align: center
+
+      #wikis, #foros, #tendencias, #juegos
+        border: 1px solid white
+        padding: 1.5rem
+        border-radius: 15px
+        background-color: orange
+        width: 45%
+        margin-right: 10px
+        margin-bottom: 10px
+        text-decoration: none
+        a
+          text-decoration: none
+        h1
+          background: orange
+          color: white
+        img
+          background: orange
+          text-decoration: none
+          border-bottom: none
+          width: 40%
+
+    #bloque2
+      width: 100%
+      display: flex
+      align-items: center
+      flex-direction: column
+
+      #bloques
+        width: 90%
+        border: 1px solid white
+        padding: .5rem
+        display: flex
+        flex-direction: column
+        border-radius: 15px
+        margin-bottom: 20px
+        img
+          width: 100%
+          border-radius: 15px
+        #descripcion_bloque
+          padding: 5px
+          padding-left: 15px
+
+    #titulo_bloques
+      width: 90%
+      margin-top: 15px
+      text-decoration: underline
+
+    footer
+      border-top: 2px solid white
+      display: flex
+      flex-direction: column
+      align-items: center
+      padding: 20px
+      #negrita
+        font-weight: bold
+      #izquierda_f
+        display: flex
+        width: 100%
+        justify-content: center
+        align-items: center
+        div
+          padding: 0
+          margin: 10px
+      #derecha_f
+        display: flex
+        width: 100%
+        justify-content: center
+        align-items: center
+
+  
+
 </style>

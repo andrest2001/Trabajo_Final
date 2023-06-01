@@ -4,6 +4,7 @@
       <h1 v-if="loggedIn">Ya ha iniciado sesión {{ nombre }}</h1>
       <button v-if="loggedIn" @click="logout">Cerrar sesión</button>
       <form @submit.prevent="login" v-if="!loggedIn">
+        <h1>Iniciar sesión</h1>
         <div id="izquierda">
           <label>Usuario:</label></div>
         <input type="text" v-model="nombre" />
@@ -145,6 +146,8 @@ export default {
       width: 100%
       justify-content: center
       align-items: center
+      h1
+        margin-bottom: 25px
       button
         cursor: pointer
       input
@@ -157,5 +160,21 @@ export default {
     font-size: 25px
     color: red
 
-    
+  @media (max-width: 768px) 
+    section
+      padding-top: 10px
+      padding-bottom: 20px
+      height: 95vh
+      #formulario
+        width: 90%
+        padding: 1rem
+        #izquierda
+          width: 100%
+        h1, p, input, button
+          font-size: 18px
+        input
+          width: 100%
+        button
+          width: 40%
+  
 </style>

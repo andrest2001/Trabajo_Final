@@ -34,5 +34,15 @@
         width: 100%
         height: 36vh
         border-radius: 15px 15px 0px 0px
-        
+    
+    @media (max-width: 768px) 
+      #carta
+        height: 30vh
+
+      h1
+        font-size: 16px
+        margin-top: 5px
+
+      img
+        height: 26vh
 </style>

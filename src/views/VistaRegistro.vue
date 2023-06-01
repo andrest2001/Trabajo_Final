@@ -123,5 +123,37 @@ export default {
     margin-top: 10px
     font-size: 25px
     color: red
+
+
+  @media (max-width: 768px) 
+    section
+      padding-top: 10px
+      padding-bottom: 20px
+      
+      height: 100vh
+      #formulario
+        width: 90%
+        padding: 1rem
+        form
+          display: flex
+          justify-content: center
+          align-items: center
+          flex-direction: column
+          width: 100%
+        h2
+          font-size: 20px
+        #izquierda
+          width: 100%
+          label
+            font-size: 16px
+        input
+          font-size: 16px
+          width: 100%
+        button
+          width: 40%
+          font-size: 16px
+          
+        .error
+          font-size: 18px
       
 </style>

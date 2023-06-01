@@ -98,28 +98,6 @@ connection.connect((error) => {
 
 
 
-  app.post('/details:id', (req, res) => {
-    const { contenido } = req.body;
-    const autor = req.session.user.nombre; // Obtener el nombre del usuario logeado
-    
-    if (!autor) {
-      // Si no hay un usuario logeado, devolver un error o un mensaje de no autorizado
-      res.status(401).json({ error: 'Debe iniciar sesión para enviar comentarios.' });
-      return;
-    }
-    
-    const sql = 'INSERT INTO comentarios (autor, contenido) VALUES (?, ?)';
-    connection.query(sql, [autor, contenido], (error, result) => {
-      if (error) {
-        console.error('Error al agregar el comentario:', error);
-        res.status(500).json({ error: 'Error al agregar el comentario.' });
-      } else {
-        res.json({ message: 'Comentario agregado correctamente.' });
-      }
-    });
-  });
-
-
 
 
 
