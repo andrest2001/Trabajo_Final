@@ -16,7 +16,7 @@
       <div id="wikis">
         <router-link to="/tendencias">
           <h1>Tendencias</h1>
-          <img src="../assets/Vector.png" alt="">
+          <img src="../assets/mdi_fire.png" alt="">
         </router-link>
         
       </div>
