@@ -6,12 +6,6 @@ const bodyParser = require('body-parser');
 
 const app = express()
 
-// CREATE TABLE comentarios (
-//   id INT PRIMARY KEY AUTO_INCREMENT,
-//   autor VARCHAR(255) NOT NULL,
-//   contenido TEXT NOT NULL,
-//   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-// );
 
 
 const connection = mysql.createConnection({
@@ -103,7 +97,33 @@ connection.connect((error) => {
 
 const port = 3001;
 
+app.get('/comentarios/:game_id', (req, res) => {
+  const gameId = req.params.game_id;
+  const query = 'SELECT * FROM comentarios WHERE game_id = ?';
 
+  connection.query(query, [gameId], (error, results) => {
+    if (error) {
+      console.error('Error al obtener los comentarios:', error);
+      res.status(500).json({ error: 'Error al obtener los comentarios.' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.post('/comentarios', (req, res) => {
+  const { usuario_id, game_id, contenido } = req.body;
+  const query = 'INSERT INTO comentarios (usuario_id, game_id, contenido) VALUES (?, ?, ?)';
+
+  connection.query(query, [usuario_id, game_id, contenido], (error, results) => {
+    if (error) {
+      console.error('Error al agregar el comentario:', error);
+      res.status(500).json({ error: 'Error al agregar el comentario.' });
+    } else {
+      res.json({ message: 'Comentario agregado correctamente.' });
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Servidor iniciado en el puerto ${port}`);
