@@ -99,7 +99,7 @@ const port = 3001;
 
 app.get('/comentarios/:game_id', (req, res) => {
   const gameId = req.params.game_id;
-  const query = 'SELECT * FROM comentarios WHERE game_id = ?';
+  const query = 'SELECT comentarios.*, usuarios.nombre FROM comentarios JOIN usuarios ON comentarios.usuario_id = usuarios.id WHERE comentarios.game_id = ?';
 
   connection.query(query, [gameId], (error, results) => {
     if (error) {
