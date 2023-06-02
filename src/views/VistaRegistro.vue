@@ -11,6 +11,12 @@
 
         <div id="izquierda"><label>Contraseña:</label></div>
         <input type="password" v-model="password" required>
+
+        <div id="izquierda"><label>Foto de perfil:</label></div>
+        <div class="profile-images">
+          <img v-for="image in profileImages" :key="image.id" :src="image.src" @click="selectProfileImage(image.id)">
+        </div>
+
         <button type="submit">Agregar Usuario</button>
 
         <p v-if="mensajeError" class="error">{{ mensajeError }}</p>
@@ -23,13 +29,20 @@
 import axios from 'axios';
 
 export default {
-  name:"VistaRegistro",
+  name: "VistaRegistro",
   data() {
     return {
       nombre: '',
       email: '',
       password: '',
-      mensajeError: ''
+      mensajeError: '',
+      selectedProfileImageId: null, // ID de la foto de perfil seleccionada
+      profileImages: [
+        { id: 1, src: '../assets/atomic_heart.jpg' },
+        { id: 2, src: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png?w=440' },
+        { id: 3, src: '../assets/the-last-of-us.jpg' },
+        { id: 4, src: '../assets/xbox-one.png' }
+      ]
     };
   },
   methods: {
@@ -38,7 +51,7 @@ export default {
         nombre: this.nombre,
         email: this.email,
         password: this.password,
-        
+        profileImageId: this.selectedProfileImageId // Agregar el ID de la foto seleccionada
       };
 
       axios.post('http://localhost:3001/registro', nuevoUsuario)
@@ -50,11 +63,13 @@ export default {
           console.error('Error al agregar el usuario:', error.response.data.error);
           this.mensajeError = error.response.data.error;
         });
+    },
+    selectProfileImage(imageId) {
+      this.selectedProfileImageId = imageId;
     }
   }
 };
 </script>
-
 
 <style lang="sass" scoped>
     section
@@ -111,6 +126,9 @@ export default {
             color: white
   form
     width: 70%
+    .profile-images
+      img
+        width: 10%
     #izquierda
       font-size: 20px
       margin-bottom: 15px
