@@ -43,7 +43,7 @@ connection.connect((error) => {
 
 
   app.post('/registro', (req, res) => {
-    const { nombre, email, password } = req.body;
+    const { nombre, email, password, profileImageId } = req.body; // Obtener el ID de la foto de perfil
   
     // Verificar si el usuario ya existe en la base de datos
     const checkQuery = 'SELECT * FROM usuarios WHERE nombre = ? OR email = ?';
@@ -56,9 +56,9 @@ connection.connect((error) => {
           // El usuario ya está registrado
           res.status(409).json({ error: 'El usuario ya está registrado.' });
         } else {
-          // Insertar el nuevo usuario en la base de datos
-          const insertQuery = 'INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)';
-          connection.query(insertQuery, [nombre, email, password], (insertError, insertResult) => {
+          // Insertar el nuevo usuario en la base de datos, incluyendo el ID de la foto de perfil
+          const insertQuery = 'INSERT INTO usuarios (nombre, email, password, profile_image_id) VALUES (?, ?, ?, ?)';
+          connection.query(insertQuery, [nombre, email, password, profileImageId], (insertError, insertResult) => {
             if (insertError) {
               console.error('Error al crear un usuario:', insertError);
               res.status(500).json({ error: 'Error al crear un usuario.' });
