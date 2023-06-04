@@ -71,7 +71,6 @@ connection.connect((error) => {
     });
   });
 
-
   app.post('/login', (req, res) => {
     const { nombre, password } = req.body;
   
