@@ -58,6 +58,7 @@ export default {
           // cuando el inicio de sesión sea exitoso
           this.loggedIn = true;
           this.nombre = user.nombre;
+          this.profileImageId = user.profileImageId;
           }
         })
         .catch(error => {

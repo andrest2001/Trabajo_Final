@@ -4,17 +4,19 @@
       <h2>Agregar Usuario</h2>
       <form @submit.prevent="agregarUsuario">
         <div id="izquierda"><label>Nombre:</label></div>
-        
         <input type="text" v-model="nombre" required>
         <div id="izquierda"><label>Correo electrónico:</label></div>
         <input type="email" v-model="email" required>
-
         <div id="izquierda"><label>Contraseña:</label></div>
         <input type="password" v-model="password" required>
 
         <div id="izquierda"><label>Foto de perfil:</label></div>
         <div class="profile-images">
           <img v-for="image in profileImages" :key="image.id" :src="image.src" @click="selectProfileImage(image.id)">
+        </div>
+        
+        <div class="selected-profile-image">
+          <img :src="selectedProfileImageSrc" v-if="selectedProfileImageSrc" alt="Imagen de perfil seleccionada">
         </div>
 
         <button type="submit">Agregar Usuario</button>
@@ -24,6 +26,8 @@
     </div>
   </section>
 </template>
+
+
 
 <script>
 import axios from 'axios';
@@ -37,22 +41,23 @@ export default {
       password: '',
       mensajeError: '',
       selectedProfileImageId: null, // ID de la foto de perfil seleccionada
+      selectedProfileImageSrc: '', // URL de la imagen de perfil seleccionada
       profileImages: [
-        { id: 1, src: '../assets/atomic_heart.jpg' },
+        { id: 1, src: 'https://i.pinimg.com/originals/2a/66/db/2a66dbcb4690dd9907d33d32f08f8439.jpg' },
         { id: 2, src: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png?w=440' },
-        { id: 3, src: '../assets/the-last-of-us.jpg' },
-        { id: 4, src: '../assets/xbox-one.png' }
+        { id: 3, src: 'https://www.zelda.com/links-awakening/assets/img/home/hero-char.png' },
+        { id: 4, src: 'https://assetsio.reedpopcdn.com/god-of-war-walkthrough-guide-5004-1642178551828.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp' }
       ]
     };
   },
   methods: {
     agregarUsuario() {
       const nuevoUsuario = {
-        nombre: this.nombre,
-        email: this.email,
-        password: this.password,
-        profileImageId: this.selectedProfileImageId // Agregar el ID de la foto seleccionada
-      };
+      nombre: this.nombre,
+      email: this.email,
+      password: this.password,
+      profileImageId: this.selectedProfileImageId // Agregar el ID de la foto seleccionada
+    };
 
       axios.post('http://localhost:3001/registro', nuevoUsuario)
         .then(response => {
@@ -66,10 +71,13 @@ export default {
     },
     selectProfileImage(imageId) {
       this.selectedProfileImageId = imageId;
+      this.selectedProfileImageSrc = this.profileImages.find(image => image.id === imageId)?.src || '';
     }
   }
 };
 </script>
+
+
 
 <style lang="sass" scoped>
     section
@@ -117,6 +125,7 @@ export default {
             padding: 1rem
             width: 100%
             font-style: italic
+       
         button
             border: none
             background: orange
@@ -129,6 +138,9 @@ export default {
     .profile-images
       img
         width: 10%
+        border: 1px solid white
+        border-radius: 10px
+        margin-right: 40px
     #izquierda
       font-size: 20px
       margin-bottom: 15px
@@ -158,6 +170,12 @@ export default {
           align-items: center
           flex-direction: column
           width: 100%
+          .profile-images
+            img
+              width: 15%
+              border: 1px solid white
+              border-radius: 10px
+              margin-right: 20px
         h2
           font-size: 20px
         #izquierda

@@ -85,7 +85,7 @@ export default {
 
 <style lang="sass" scoped>
     #principal
-        height: 90vh
+        height: 150vh
         width: 100%
         display: flex
         justify-content: center
@@ -95,12 +95,53 @@ export default {
         color: white
         height: 70vh
         display: flex
-        justify-content: center
-        align-items: center
+        
         flex-direction: column
         border: 1px solid white
         border-radius: 15px
         width: 70%
+        height: 150vh
+        .image-container
+          margin-top: 20px
+        .details
+          display: flex
+          justify-content: center
+          align-items: center
+          flex-direction: column
+          width: 100%
+          margin-top: 20px
+          #wikis
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-direction: column
+            width: 100%
+            form
+              display: flex
+              justify-content: center
+              align-items: center
+              flex-direction: column
+              width: 100%
+              textarea
+                width: 60%
+                border-radius: 10px
+                height: 8vh
+              button
+                margin-top: 15px
+                
+                border-radius: 10px
+                border: none
+                color: white
+                background: orange
+                padding: 1rem
+            .comment
+              border: 1px solid white
+              width: 60%
+              border-radius: 10px
+              padding: 1rem
+              margin-top: 20px
+
+
         
 
     #imagen

@@ -36,7 +36,7 @@
 
     <div v-for="(game) in latestGames" :key="game.id" id="bloque2">
       <div id="bloques">
-        <img :src="game.background_image" alt="">
+        <img :src="game.background_image || '/img/favicon.bba8d69c.png'" alt="">
         <div id="descripcion_bloque">
           <h1>{{ game.name }}</h1>
           <p>{{ game.description }}</p>
@@ -71,7 +71,6 @@
 <script>
 import axios from 'axios'
 export default {
-  
   name: 'VistaInicio',
   data: () => ({
     latestGames: [],
@@ -86,7 +85,6 @@ export default {
       this.latestGames = response.data.results
     }
   }
-
 }
 </script>
 
