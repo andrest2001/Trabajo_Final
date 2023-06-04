@@ -44,7 +44,7 @@ export default {
   methods: {
     login() {
       axios
-        .post('http://localhost:3001/login', {
+        .post('https://jolly-druid-c01239.netlify.app//login', {
           nombre: this.nombre,
           password: this.password
         })
