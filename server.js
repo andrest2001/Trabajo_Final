@@ -9,10 +9,10 @@ const app = express()
 
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'wikigames_db'
+    host: 'bbmrwkg1nbl5tawomil2-mysql.services.clever-cloud.com',
+    user: 'ux6d0nlashtp9wfz',
+    password: 'pPJBJUQl0Fj3Q3X0Gy3Z',
+    database: 'bbmrwkg1nbl5tawomil2'
   });
 
 
