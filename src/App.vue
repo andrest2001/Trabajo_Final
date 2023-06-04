@@ -1,4 +1,3 @@
-
 <template>
   <nav>
     <div id="wikigames">
@@ -17,10 +16,40 @@
       <router-link to="/registro">Registro</router-link>
       <router-link to="/contacto">Contacto</router-link>
     </div>
+
+    <div v-if="profileImageId" class="profile-image">
+      <img :src="getProfileImageUrl(profileImageId)" alt="Foto de perfil">
+    </div>
   </nav>
+  
+  
   
   <router-view/>
 </template>
+
+<script>
+  export default {
+    props: {
+      profileImageId: {
+        type: Number,
+        default: null
+      }
+    },
+    methods: {
+      getProfileImageUrl(imageId) {
+        const images = {
+          1: 'https://i.pinimg.com/originals/2a/66/db/2a66dbcb4690dd9907d33d32f08f8439.jpg',
+          2: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png?w=440',
+          3: 'https://www.zelda.com/links-awakening/assets/img/home/hero-char.png',
+          4: 'https://assetsio.reedpopcdn.com/god-of-war-walkthrough-guide-5004-1642178551828.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp'
+        };
+
+        return images[imageId];
+      }
+    }
+  };
+</script>
+
 
 
 <style lang="sass">
