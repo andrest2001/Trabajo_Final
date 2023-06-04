@@ -1,14 +1,7 @@
 <template>
   <div id="principal">
     <div v-if="games">
-      <form>
-        <label for="rating">Sort by rating:</label>
-        <select name="rating" id="rating" @input="handleSelect">
-          <option value="non" selected disabled>Select an Option</option>
-          <option value="ascending" >ascending order</option>
-          <option value="descending" >descending order</option>
-        </select>
-      </form>
+
       <div id="juegos">
         <div v-for="game in pageArray" :key="game.id" id="contenedor">
           <GameCard  :result="game" :genre='true'
@@ -21,7 +14,7 @@
   
         
       </div>
-        <div  class='page'>
+        <div class='page'>
           <p v-for="page in pageNumber" :key="page" @click="handlePage(page)" class='page-numbers'>{{page}}</p>
         </div>
       <div class="paginate">
@@ -52,7 +45,7 @@
       },
       methods: {
         async getGamesByGenre() {
-          // Get Genre Id here
+          
           const res = await axios.get(`https://api.rawg.io/api/games?genres=${this.$route.params.genre_id}&key=${this.API_KEY}`)
   
           this.games = res.data.results
@@ -126,9 +119,37 @@
       align-items: center
       padding-bottom: 75px
       padding-top: 75px
+      cursor: pointer
       p
         padding-right: 40px
         font-size: 20px
 
+  @media (max-width: 768px) 
+    #principal
+      margin-top: 30px
+      #juegos
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        #contenedor
+          width: 80%
+          padding: 10px
+          
+          #carta
+            height: 60vh
+        
+    form
+      label
+        font-size: 14px
+        padding-right: 5px
+      select
+        padding: 0.3rem
+        font-size: 12px
+    .page
+      p
+        padding-right: 15px
+        font-size: 14px
+  
 
 </style>

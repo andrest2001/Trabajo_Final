@@ -3,61 +3,43 @@
     
     <div id="descripcion">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime id ducimus quos! Enim, nostrum voluptates. Aliquid nesciunt voluptatem cumque unde minima adipisci sunt corporis, obcaecati, iusto repellendus nemo, nostrum reiciendis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam non ea accusamus, pariatur ducimus repudiandae rem mollitia impedit sit vel consequuntur quas, debitis aut harum corrupti quis? Fugit, rem maxime.
+        ¡Bienvenido a WikiGames! Nuestro objetivo es proporcionarte una plataforma completa donde puedas descubrir, explorar y aprender sobre una amplia variedad de videojuegos. Ya sea que busques reseñas detalladas, trucos y consejos, noticias de la industria o simplemente quieras mantenerte al día con las últimas tendencias, WikiGames tiene todo lo que necesitas. En WikiGames fomentamos la participación de nuestra comunidad. Puedes compartir tus propias opiniones, comentarios y experiencias en la sección de comentarios de cada juego. ¡No hay nada mejor que discutir tus juegos favoritos con personas que comparten tu pasión!
       </p>
     </div>
     <div id="cubos">
       <div id="juegos">
         <router-link to="./juegos">
-          <h1>All Games</h1>
+          <h1>Juegos</h1>
           <img src="../assets/mdi_controller.png" alt="">
         </router-link>
       </div>
       <div id="wikis">
-        <router-link to="/login">
-          <h1>Wikis</h1>
-          <img src="../assets/Vector.png" alt="">
+        <router-link to="/tendencias">
+          <h1>Tendencias</h1>
+          <img src="../assets/mdi_fire.png" alt="">
         </router-link>
         
       </div>
-      <div id="foros">
-        <h1>Foros</h1>
-        <img src="../assets/maki_art-gallery.png" alt="">
-      </div>
-      <div id="tendencias">
-        <h1>Tendencias</h1>
-        <img src="../assets/mdi_fire.png" alt="">
-      </div>
+
+
       
     </div>
     
     <div id="titulo_bloques">
         <h1>LAST UPLOADS</h1>
     </div>
-    <div id="bloque2">
-      
-      
-      <div id="bloques">
-        <img src="../assets/atomic_heart.jpg" alt="">
-        <div id="descripcion_bloque">
-          <h1>GUÍA BÁSICA DE ATOMIC HEART</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, provident repellat saepe at iste animi esse sint quo, velit consequuntur, assumenda earum ullam error voluptas delectus nam dolorum illum ex.</p>
-        </div>
-      </div>
-    </div>
 
-    <div id="bloque2">
-      
-      
+
+
+    <div v-for="(game) in latestGames" :key="game.id" id="bloque2">
       <div id="bloques">
-        <img src="../assets/the-last-of-us.jpg" alt="">
+        <img :src="game.background_image || '/img/favicon.bba8d69c.png'" alt="">
         <div id="descripcion_bloque">
-          <h1>GUÍA BÁSICA THE LAST OF US</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, provident repellat saepe at iste animi esse sint quo, velit consequuntur, assumenda earum ullam error voluptas delectus nam dolorum illum ex.</p>
+          <h1>{{ game.name }}</h1>
+          <p>{{ game.description }}</p>
         </div>
       </div>
     </div>
-    
 
     <footer>
       <div id="izquierda_f">
@@ -71,11 +53,11 @@
           <p id="negrita">Información</p>
           <p>Contáctanos</p>
           <p>Política de privacidad</p>
-          <p>xd</p>
+          <p>Soporte</p>
         </div>
       </div>
       <div id="derecha_f">
-          <p>© 2011-2022 Andrés Toledano. All Rights Reserved.</p>
+          <p>© 2022-2023 Andrés Toledano. All Rights Reserved.</p>
       </div>
     </footer>
   </section>
@@ -84,12 +66,22 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
-  
   name: 'VistaInicio',
-
-
+  data: () => ({
+    latestGames: [],
+    API_KEY: "5496e25bcb454313b1ac09968d76dca4",
+  }),
+  mounted() {
+    this.getLatestGames()
+  },
+  methods: {
+    async getLatestGames() {
+      const response = await axios.get(`https://api.rawg.io/api/games?key=5496e25bcb454313b1ac09968d76dca4&ordering=-released&page_size=3`)
+      this.latestGames = response.data.results
+    }
+  }
 }
 </script>
 
@@ -121,6 +113,7 @@ export default {
       align-items: center
       margin-top: 20px
       text-align: center
+      
       #wikis, #foros, #tendencias, #juegos
         border: 1px solid white
         padding: 3rem
@@ -133,6 +126,7 @@ export default {
         width: 220px
         height: 210px
         text-decoration: none
+        
         a
           text-decoration: none
         h1
@@ -155,8 +149,6 @@ export default {
       border: 1px solid white
       padding: .5rem
       display: flex
-      
-      
       border-radius: 15px
       margin-bottom: 30px
       margin-top: 10px
@@ -193,5 +185,106 @@ export default {
       justify-content: center
       align-items: center
       
-    
+  @media (max-width: 768px)  
+    #principal
+      font-family: 'Roboto', sans-serif
+      color: white
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 100%
+      display: flex
+      flex-direction: column
+      #cubos
+        width: 100%
+
+
+    p
+      font-size: 16px
+
+    #descripcion
+      padding-top: 2rem
+      width: 90%
+      p
+        font-size: 20px
+
+    #cubos
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      align-items: center
+      margin-top: 20px
+      width: 100%
+      text-align: center
+
+      #wikis, #foros, #tendencias, #juegos
+        border: 1px solid white
+        padding: 1.5rem
+        border-radius: 15px
+        background-color: orange
+        width: 45%
+        margin-right: 10px
+        margin-bottom: 10px
+        text-decoration: none
+        a
+          text-decoration: none
+        h1
+          background: orange
+          color: white
+        img
+          background: orange
+          text-decoration: none
+          border-bottom: none
+          width: 40%
+
+    #bloque2
+      width: 100%
+      display: flex
+      align-items: center
+      flex-direction: column
+
+      #bloques
+        width: 90%
+        border: 1px solid white
+        padding: .5rem
+        display: flex
+        flex-direction: column
+        border-radius: 15px
+        margin-bottom: 20px
+        img
+          width: 100%
+          border-radius: 15px
+        #descripcion_bloque
+          padding: 5px
+          padding-left: 15px
+
+    #titulo_bloques
+      width: 90%
+      margin-top: 15px
+      text-decoration: underline
+
+    footer
+      border-top: 2px solid white
+      display: flex
+      flex-direction: column
+      align-items: center
+      padding: 20px
+      #negrita
+        font-weight: bold
+      #izquierda_f
+        display: flex
+        width: 100%
+        justify-content: center
+        align-items: center
+        div
+          padding: 0
+          margin: 10px
+      #derecha_f
+        display: flex
+        width: 100%
+        justify-content: center
+        align-items: center
+
+  
+
 </style>

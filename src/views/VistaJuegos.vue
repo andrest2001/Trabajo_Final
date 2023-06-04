@@ -9,14 +9,17 @@
 
       <section class="search-results container-grid" id="busqueda">
         <div v-for="(result, index) in searchResults" :key="result.id" id="busqueda_juegos">
-          <GameCard v-if="index >= lastDisplay && index < currentDisplay" :result="result" @click="selectGame(result.id)" :genre="false"/>
+          <div id="cartita">
+            <GameCard v-if="index >= lastDisplay && index < currentDisplay" :result="result" @click="selectGame(result.id)" :genre="false"/>
+          </div>
+          
         </div>
       </section>
     </div>
 
     <div v-if="searched === false" class="genres" id="generos">
-      <h2>Genres</h2>
-      <section  id="juegos">
+      <h2>Géneros</h2>
+      <section id="juegos">
         <div v-for="(genre, index) in genres" :key="genre.id" id="div_carta">
           <GenreCard v-if="index >= lastDisplay && index < currentDisplay" v-bind:genre="genre" @click="selectGenre(genre.id)" />
         </div>
@@ -54,8 +57,8 @@ import GenreCard from '../components/GenreCard.vue'
       pageNumber: '',
       currentPage: 1,
       lastDisplay: 0,
-      currentDisplay: 8,
-      numberOfDisplay: 8,
+      currentDisplay: 3,
+      numberOfDisplay: 3,
       pageArray: []
     }),
     mounted() {
@@ -104,12 +107,14 @@ import GenreCard from '../components/GenreCard.vue'
         color: white
         display: flex
         flex-direction: column
+        height: 100vh
 
     .pagination
       display: flex
       justify-content: center
       align-items: center
-      padding-bottom: 75px
+      margin-bottom: 500px
+      cursor: pointer
       p
         padding-right: 40px
         font-size: 20px
@@ -139,24 +144,29 @@ import GenreCard from '../components/GenreCard.vue'
         border: none
         background: white
         border-radius: 15px
-        padding: .5rem
-        width: 68%
+        padding: 1.5rem
+        width: 100%
+        
         font-style: italic
       button
         border: none
         color: white
         background: orange
         border-radius: 15px
-        padding: .5rem
-        width: 30%
+        padding: 1.5rem
+        width: 40%
         font-style: italic
     #div_carta
       width: 30%
+      margin-top: 30px
       padding-right: 40px
       padding-bottom: 40px
 
+
     #generos
       width: 100%
+      margin-top: 20px
+      
       h2
         padding-left: 95px
         padding-bottom: 20px
@@ -168,6 +178,72 @@ import GenreCard from '../components/GenreCard.vue'
       align-items: center
       flex-wrap: wrap
 
+    form
+      display: flex
+      width: 50%
+      justify-content: center
+      align-items: center
+      input
+        margin-right: 15px
+        padding: 1rem
+
+  @media (max-width: 768px)
+    #principal
+        height: 100vh
+        padding-bottom: 20px
+        width: 100%
+        #generos
+          h2
+            padding-left: 20px
+            padding-bottom: 10px
+          #juegos
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+            flex-direction: column
+            #div_carta
+              width: 65%
+        .pagination
+          margin-bottom: 200px
+          p
+            font-size: 16px
+
+
     
+
+    .search
+      margin-right: 0
+      margin-top: 15px
+      form
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: row
+        width: 100%
+        
+        input
+          margin-right: 20px
+          margin-bottom: 15px
+          margin-left: 15px
+          width: 80%
+          margin-top: 15px
+
+        button
+          width: 30%
+          margin-right: 20px
+          
+        
+
+        
+
+        #busqueda
+          #busqueda_juegos
+            width: 100%
+            padding-right: 0
+
+        
+
+       
       
 </style>

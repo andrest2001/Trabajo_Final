@@ -1,6 +1,7 @@
+
 <template>
   <section>
-    <div id="formulario">
+    <form id="formulario" action="https://formspree.io/f/mwkjjoob" method="POST">
       
       <h1>CONTACTO</h1>
       <div id="izquierda">
@@ -11,23 +12,34 @@
       <div id="izquierda">
         <p>Correo electrónico</p>
       </div>
-      <input type="text" placeholder="Escriba aquí su correo">
+      <input type="email" name="email" placeholder="Escriba aquí su correo electrónico">
       <div id="izquierda">
         <p>Sugerencia o problema</p>
       </div>
-      <input type="text" placeholder="Escriba aquí lo que necesite" id="input_grande">
+      <textarea name="message"></textarea>
       <div id="izquierda">
         <button>Entrar</button>
       </div>
 
-    </div>
+    </form>
+
+
   </section>
 </template>
 
 <script>
+
 export default{
-  name:'VistaContacto'
+  name:'VistaContacto',
+  components: {
+     
+   }
+  
 }
+
+
+
+
 </script>
 
 
@@ -51,7 +63,7 @@ export default{
       padding: 2rem
       border: 2px solid white
       border-radius: 15px
-      #input_grande
+      textarea
         border: none
         background: white
         border-radius: 15px
@@ -86,7 +98,30 @@ export default{
         padding: 1rem
         width: 20%
         color: white
-    
+  
+  @media (max-width: 768px) 
+    section
+      height:100vh
+      margin-top: 80px
+      width: 100%
+      
+      #formulario
+        height:100vh
+        width: 80%
+        
+        h1
+          margin-top: 0px
+
+        #izquierda
+          width:100%
+        input
+          width: 100%
+        textarea
+          width:100%
+
+        button
+          width: 50%
+      
+  
 
 </style>
-
