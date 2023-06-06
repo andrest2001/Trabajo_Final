@@ -3,16 +3,16 @@ const mysql = require('mysql');
 const session = require('express-session');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
+require('dotenv').config();
 const app = express()
 
 
 
 const connection = mysql.createConnection({
-    host: 'bbmrwkg1nbl5tawomil2-mysql.services.clever-cloud.com',
-    user: 'ux6d0nlashtp9wfz',
-    password: 'pPJBJUQl0Fj3Q3X0Gy3Z',
-    database: 'bbmrwkg1nbl5tawomil2'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
   });
 
 
@@ -33,7 +33,7 @@ connection.connect((error) => {
       secret: 'andres2001',
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: true }, // Cambia a true si usas HTTPS
+      cookie: { secure: false }, // Cambia a true si usas HTTPS
     })
   );
 
