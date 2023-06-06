@@ -144,16 +144,17 @@ import GenreCard from '../components/GenreCard.vue'
         border: none
         background: white
         border-radius: 15px
-        padding: .5rem
-        width: 68%
+        padding: 1.5rem
+        width: 100%
+        
         font-style: italic
       button
         border: none
         color: white
         background: orange
         border-radius: 15px
-        padding: .5rem
-        width: 30%
+        padding: 1.5rem
+        width: 40%
         font-style: italic
     #div_carta
       width: 30%
@@ -179,8 +180,12 @@ import GenreCard from '../components/GenreCard.vue'
 
     form
       display: flex
+      width: 50%
+      justify-content: center
+      align-items: center
       input
         margin-right: 15px
+        padding: 1rem
 
   @media (max-width: 768px)
     #principal

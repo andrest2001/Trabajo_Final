@@ -3,7 +3,7 @@
     
     <div id="descripcion">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime id ducimus quos! Enim, nostrum voluptates. Aliquid nesciunt voluptatem cumque unde minima adipisci sunt corporis, obcaecati, iusto repellendus nemo, nostrum reiciendis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam non ea accusamus, pariatur ducimus repudiandae rem mollitia impedit sit vel consequuntur quas, debitis aut harum corrupti quis? Fugit, rem maxime.
+        ¡Bienvenido a WikiGames! Nuestro objetivo es proporcionarte una plataforma completa donde puedas descubrir, explorar y aprender sobre una amplia variedad de videojuegos. Ya sea que busques reseñas detalladas, trucos y consejos, noticias de la industria o simplemente quieras mantenerte al día con las últimas tendencias, WikiGames tiene todo lo que necesitas. En WikiGames fomentamos la participación de nuestra comunidad. Puedes compartir tus propias opiniones, comentarios y experiencias en la sección de comentarios de cada juego. ¡No hay nada mejor que discutir tus juegos favoritos con personas que comparten tu pasión!
       </p>
     </div>
     <div id="cubos">
@@ -20,10 +20,7 @@
         </router-link>
         
       </div>
-      <div id="foros">
-        <h1>Foros</h1>
-        <img src="../assets/maki_art-gallery.png" alt="">
-      </div>
+
 
       
     </div>

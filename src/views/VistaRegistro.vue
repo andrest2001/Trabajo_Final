@@ -16,7 +16,7 @@
         </div>
         
         <div class="selected-profile-image">
-          <img :src="selectedProfileImageSrc" v-if="selectedProfileImageSrc" alt="Imagen de perfil seleccionada">
+          <img :src="selectedProfileImageSrc" v-if="selectedProfileImageSrc" alt="">
         </div>
 
         <button type="submit">Agregar Usuario</button>
@@ -62,7 +62,7 @@ export default {
       axios.post('http://localhost:3001/registro', nuevoUsuario)
         .then(response => {
           console.log(response.data.message);
-          // Realizar acciones adicionales después de agregar el usuario
+          
         })
         .catch(error => {
           console.error('Error al agregar el usuario:', error.response.data.error);
@@ -141,6 +141,13 @@ export default {
         border: 1px solid white
         border-radius: 10px
         margin-right: 40px
+    .selected-profile-image
+      margin-top: 20px
+      display: flex
+      justify-content: center
+      align-items: center
+      img
+        width: 10%
     #izquierda
       font-size: 20px
       margin-bottom: 15px
@@ -176,6 +183,14 @@ export default {
               border: 1px solid white
               border-radius: 10px
               margin-right: 20px
+
+          .selected-profile-image
+            margin-top: 20px
+            display: flex
+            justify-content: center
+            align-items: center
+            img
+              width: 10%
         h2
           font-size: 20px
         #izquierda

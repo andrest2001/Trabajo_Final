@@ -52,6 +52,7 @@ export default {
         `https://api.rawg.io/api/games/${this.$route.params.game_id}?key=${this.API_KEY}`
       );
       this.gameDetails = res.data;
+      
     },
     async getComments() {
       const gameId = this.$route.params.game_id;
@@ -61,8 +62,8 @@ export default {
     async submitComment(event) {
       event.preventDefault();
 
-      // Obtener el usuario actual (puedes obtenerlo desde la sesión o de alguna otra manera)
-      const usuarioId = 1; // Por ejemplo, asumamos que el usuario actual tiene un ID de 1
+      
+      const usuarioId = 1; 
 
       // Obtener el game_id desde la ruta
       const gameId = this.$route.params.game_id;

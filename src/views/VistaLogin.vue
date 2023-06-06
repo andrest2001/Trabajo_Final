@@ -18,7 +18,7 @@
       
     </div>
   </section>
-  <router-view></router-view>
+
 </template>
 
 <script>
@@ -44,7 +44,7 @@ export default {
   methods: {
     login() {
       axios
-        .post('https://jolly-druid-c01239.netlify.app//login', {
+        .post('http://localhost:3001/login', {
           nombre: this.nombre,
           password: this.password
         })
@@ -54,8 +54,7 @@ export default {
           if (message === 'Inicio de sesión exitoso') {
           // Almacenar información del usuario en el localStorage
           localStorage.setItem('user', JSON.stringify(user));
-          // Redireccionar a otra página o realizar acciones adicionales
-          // cuando el inicio de sesión sea exitoso
+          
           this.loggedIn = true;
           this.nombre = user.nombre;
           this.profileImageId = user.profileImageId;
@@ -79,7 +78,7 @@ export default {
     logout() {
       // Borrar la información del usuario del almacenamiento local
       localStorage.removeItem('user');
-      // Realizar acciones adicionales al cerrar sesión, como redireccionar a otra página
+      
       this.loggedIn = false;
       this.nombre = '';
     }
