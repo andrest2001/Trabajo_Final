@@ -107,6 +107,8 @@ nav
       justify-content: center
       margin-top: 23px
       font-size: 25px
+  #menu-toggle
+    display: none
   @media (max-width: 768px) 
     *
     margin: 0
@@ -157,7 +159,7 @@ nav
       height: 20px
       cursor: pointer
       margin-top: 17px
-      position: fixed
+      
       right: 20px
       span
         width: 100%
@@ -179,7 +181,7 @@ nav
 
     .menu-toggle:checked + .hamburger + .menu
       display: flex
-      position: fixed
+      
 </style>
 
 
